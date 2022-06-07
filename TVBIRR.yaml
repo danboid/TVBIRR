@@ -1,0 +1,21 @@
+# TV Box Internet Radio Recorder ansible installation playbook by Dan MacDonald.
+
+# This script is intended to be run under s9xxx Armbian as root.
+# It has been tested with Armbian Jammy and currently only supports the X96 Max+.
+
+# This playbook presumes:
+
+# You have configured your network correctly.
+# You have a USB soundcard or speaker attached to your TV box because
+# onboard ALSA audio doesn't currently work for the X96 Max Plus.
+
+---
+- name: Install and configure TV Box Internet Radio Recorder
+  hosts: localhost
+  tasks:
+    - name: Backup existing openvfd config file for X96 Max Plus 
+      become: true
+      copy:
+        src: /usr/share/openvfd/conf/x96maxplus.conf
+        dest: /usr/share/openvfd/conf/x96maxplus.conf.orig
+
