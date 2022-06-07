@@ -23,3 +23,14 @@
         path: /usr/share/openvfd/conf/x96maxplus.conf
         regexp: '^function'
         line: function=''
+
+    - name: Copy original openvfd config to create recording display config
+      copy:
+        src: /usr/share/openvfd/conf/x96maxplus.conf.orig
+        dest: /usr/share/openvfd/conf/x96maxplus-sd.conf
+
+    - name: Edit x96maxplus-sd.conf to enable the sd (CARD) function
+      lineinfile:
+        path: /usr/share/openvfd/conf/x96maxplus-sd.conf
+        regexp: '^function'
+        line: function='sd'
