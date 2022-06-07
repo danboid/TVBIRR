@@ -34,3 +34,10 @@
         path: /usr/share/openvfd/conf/x96maxplus-sd.conf
         regexp: '^function'
         line: function='sd'
+
+    - name: Add x96maxplus-sd.conf to armbian-led
+      lineinfile:
+        path: /usr/sbin/armbian-led
+        insertbefore: '^\s*99'
+        line: '        98 | x96maxplus-sd)  do_start x96maxplus-sd.conf ;;'
+        backup: yes
