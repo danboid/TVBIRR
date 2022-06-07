@@ -14,8 +14,12 @@
   hosts: localhost
   tasks:
     - name: Backup existing openvfd config file for X96 Max Plus 
-      become: true
       copy:
         src: /usr/share/openvfd/conf/x96maxplus.conf
         dest: /usr/share/openvfd/conf/x96maxplus.conf.orig
-
+    
+    - name: Edit x96maxplus.conf to only show the time 
+      lineinfile:
+        path: /usr/share/openvfd/conf/x96maxplus.conf
+        regexp: '^function'
+        line: function=''
