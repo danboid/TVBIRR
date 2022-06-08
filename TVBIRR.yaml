@@ -48,3 +48,12 @@
         insertbefore: '^exit'
         line: armbian-led 12
         backup: yes
+
+    - name: Compile keybinder
+      shell: make chdir=keybinder
+        
+    - name: Copy keybinder into /usr/local/bin
+      copy:
+        src: keybinder/keybinder
+        dest: /usr/local/bin/keybinder
+        mode: a+x
