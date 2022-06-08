@@ -96,3 +96,7 @@
         path: /etc/systemd/system/jack.service.d
         state: directory
 
+    - name: Copy all stations playlist into /root/playlists
+      copy:
+        src: config/TVBIRR-All-Stations.m3u
+        dest: /root/playlists/TVBIRR-All-Stations.m3u
