@@ -115,3 +115,9 @@
       copy:
         src: services/jack.service
         dest: /etc/systemd/system/jack.service
+
+    - name: Start keybinder at boot 
+      lineinfile:
+        path: /etc/rc.local
+        insertbefore: '^exit'
+        line: /usr/local/bin/keybinder /dev/input/by-path/platform-ff808000.ir-event 
