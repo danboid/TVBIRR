@@ -110,3 +110,8 @@
       copy:
         src: services/override.conf
         dest: /etc/systemd/system/jack.service.d/override.conf
+
+    - name: Create JACK systemd service 
+      copy:
+        src: services/jack.service
+        dest: /etc/systemd/system/jack.service

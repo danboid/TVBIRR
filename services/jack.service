@@ -1,0 +1,14 @@
+[Unit]
+Description=JACK audio server
+Documentation=man:jackd(1)
+After=sound.target local-fs.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/jackd -R -d alsa -d hw:1,0
+LimitRTPRIO=95
+LimitRTTIME=infinity
+LimitMEMLOCK=infinity
+
+[Install]
+WantedBy=default.target
