@@ -105,3 +105,8 @@
       copy:
         src: config/config
         dest: /root/.moc/config
+
+    - name: Copy JACK systemd service override into place - required to run JACK headlessly
+      copy:
+        src: services/override.conf
+        dest: /etc/systemd/system/jack.service.d/override.conf
