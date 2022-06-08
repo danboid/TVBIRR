@@ -74,3 +74,25 @@
         src: scripts/stop-rec
         dest: /usr/local/bin/stop-rec
         mode: a+x
+
+          # It is recommended you record to a separate micro SD card or a USB disk rather than your OS disk          
+    - name: Create default stream recording target directory
+      file:
+        path: /root/mp3s
+        state: directory
+
+    - name: Create default playlists directory
+      file:
+        path: /root/playlists
+        state: directory
+
+    - name: Create moc config directory
+      file:
+        path: /root/.moc
+        state: directory
+
+    - name: Create JACK service override directory
+      file:
+        path: /etc/systemd/system/jack.service.d
+        state: directory
+
