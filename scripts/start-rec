@@ -1,0 +1,7 @@
+#!/bin/bash
+if [[ -f "/tmp/rec.lock" ]]; then
+    echo "jack_capture is already running"
+    exit 
+else
+    screen -d -m jack_capture -mp3 /root/mp3s/$(date +%d%m%Y_%H%M%S).mp3 && armbian-led 0 && armbian-led 98 && touch /tmp/rec.lock
+fi

@@ -62,3 +62,15 @@
       copy:
         src: keybinder/keybinder.conf
         dest: /etc/keybinder.conf
+
+    - name: Copy start-rec into /usr/local/bin
+      copy:
+        src: scripts/start-rec
+        dest: /usr/local/bin/start-rec
+        mode: a+x
+
+    - name: Copy stop-rec into /usr/local/bin
+      copy:
+        src: scripts/stop-rec
+        dest: /usr/local/bin/stop-rec
+        mode: a+x

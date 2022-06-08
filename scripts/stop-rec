@@ -1,0 +1,5 @@
+#!/bin/bash
+killall screen
+armbian-led 0
+armbian-led 12
+rm /tmp/rec.lock
