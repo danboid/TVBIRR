@@ -130,4 +130,7 @@
           - jack-capture
         state: present
 
-
+    - name: Enable JACK systemd service
+      service:
+        name: jack
+        enabled: yes
