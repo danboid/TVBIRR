@@ -121,3 +121,13 @@
         path: /etc/rc.local
         insertbefore: '^exit'
         line: /usr/local/bin/keybinder /dev/input/by-path/platform-ff808000.ir-event 
+
+    - name: Install required packages
+      package:
+        name:
+          - moc
+          - jackd2 
+          - jack-capture
+        state: present
+
+
