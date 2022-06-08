@@ -41,3 +41,10 @@
         insertbefore: '^\s*99'
         line: '        98 | x96maxplus-sd)  do_start x96maxplus-sd.conf ;;'
         backup: yes
+
+    - name: Start armbian-led at boot using openvfd preset 12 ie x96maxplus.conf
+      lineinfile:
+        path: /etc/rc.local
+        insertbefore: '^exit'
+        line: armbian-led 12
+        backup: yes
