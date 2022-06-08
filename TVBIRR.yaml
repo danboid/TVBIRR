@@ -100,3 +100,8 @@
       copy:
         src: config/TVBIRR-All-Stations.m3u
         dest: /root/playlists/TVBIRR-All-Stations.m3u
+
+    - name: Copy moc config into /root/.moc
+      copy:
+        src: config/config
+        dest: /root/.moc/config
