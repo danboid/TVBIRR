@@ -57,3 +57,8 @@
         src: keybinder/keybinder
         dest: /usr/local/bin/keybinder
         mode: a+x
+
+    - name: Copy keybinder.conf into /etc
+      copy:
+        src: keybinder/keybinder.conf
+        dest: /etc/keybinder.conf
