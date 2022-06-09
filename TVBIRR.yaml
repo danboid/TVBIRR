@@ -121,6 +121,11 @@
         src: services/keybinder.service
         dest: /etc/systemd/system/keybinder.service
 
+    - name: Remove unneeded ifupdown to stop "raising network interfaces" boot delay
+      package:
+        name: ifupdown
+        state: absent
+
     - name: Install required packages
       package:
         name:
