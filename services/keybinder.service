@@ -1,0 +1,8 @@
+[Unit]
+Description=keybinder
+
+[Service]
+ExecStart=/usr/local/bin/keybinder /dev/input/by-path/platform-ff808000.ir-event
+
+[Install]
+WantedBy=multi-user.target

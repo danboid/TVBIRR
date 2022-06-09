@@ -116,11 +116,10 @@
         src: services/jack.service
         dest: /etc/systemd/system/jack.service
 
-    - name: Start keybinder at boot 
-      lineinfile:
-        path: /etc/rc.local
-        insertbefore: '^exit'
-        line: /usr/local/bin/keybinder /dev/input/by-path/platform-ff808000.ir-event 
+    - name: Create keybinder systemd service
+      copy:
+        src: services/keybinder.service
+        dest: /etc/systemd/system/keybinder.service
 
     - name: Install required packages
       package:
@@ -130,7 +129,9 @@
           - jack-capture
         state: present
 
-    - name: Enable JACK systemd service
+    - name: Enable required systemd services
       service:
-        name: jack
+        name:
+          - jack
+          - keybinder
         enabled: yes
