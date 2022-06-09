@@ -21,8 +21,8 @@
     - name: Edit x96maxplus.conf to only show the time 
       lineinfile:
         path: /usr/share/openvfd/conf/x96maxplus.conf
-        regexp: '^function'
-        line: function=''
+        regexp: '^functions'
+        line: functions=''
 
     - name: Copy original openvfd config to create recording display config
       copy:
@@ -32,8 +32,8 @@
     - name: Edit x96maxplus-sd.conf to enable the sd (CARD) function
       lineinfile:
         path: /usr/share/openvfd/conf/x96maxplus-sd.conf
-        regexp: '^function'
-        line: function='sd'
+        regexp: '^functions'
+        line: functions='sd'
 
     - name: Add x96maxplus-sd.conf to armbian-led
       lineinfile:
