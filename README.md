@@ -29,5 +29,10 @@ cd TVBIRR
 ansible-playbook TVBIRR.yaml
 ```
 
-After the ansible-playbook has run, installed and configured the various coponenents of TVBIRR, reboot your TV box with a USB audio device attached and you can start using TVBIRR with the remote.
+## Using TVBIRR
 
+After the ansible-playbook has run, installed and configured the various components of TVBIRR, reboot your TV box with a USB audio device attached and you can start using TVBIRR with the remote.
+
+![TVBIRR remote controls](https://github.com/danboid/TVBIRR/blob/main/images/TVBIRR-remote.jpg)
+
+Note that if you are using the default playlist of over 32000 stations, there is a 10 second or so delay before the first station will start to play because moc (the music player) is quite slow at loading large playlists. You can reduce this time by editing the playlist. If you trim the playlist down to about 3K stations moc should load in a second or so when you push play. Once the playlist has loaded, skipping stations is almost instant. If you are going to keep the default 32K station playlist, it might make sense to leave it running and turn the volume down to silent instead of using the stop button because TVBIRR/moc reloads the full playlist each time you push play.
