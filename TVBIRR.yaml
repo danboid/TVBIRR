@@ -131,7 +131,8 @@
 
     - name: Enable required systemd services
       service:
-        name:
-          - jack
-          - keybinder
+        name: {{ item }}
         enabled: yes
+      with_item: 
+        - jack 
+        - keybinder
