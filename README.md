@@ -32,23 +32,25 @@ ansible-playbook TVBIRR.yaml
 
 ## Using TVBIRR
 
-After the ansible playbook has been run and its installed and configured the various components of TVBIRR, reboot your TV box with a USB audio device attached and you can start using TVBIRR with the remote, without having to have a HDMI display attached to your TV box.
+After the ansible playbook has been run and its installed and configured the various components of TVBIRR, reboot your TV box with a USB audio device attached and you can start using TVBIRR with the remote, without having to have a HDMI display attached to your TV box. You can push the play button to start playing the default playlist as soon as the LED clock lights up.
 
 ![TVBIRR remote controls](https://github.com/danboid/TVBIRR/blob/main/images/TVBIRR-remote.jpg)
 
-Note that if you are using the default playlist of over 32000 stations, there is a 10 second or so delay before the first station will start to play because moc (the music player) is quite slow at loading large playlists so be patient! You can reduce this time by editing the playlist, the default being `/root/playlists/TVBIRR-All-Stations.m3u`. If you trim the playlist down to about 3K stations moc should load in a second or so when you push play. Once the playlist has loaded, skipping stations is almost instant. If you are going to keep the default 32K station playlist, it might make sense to leave it running and turn the volume down to silent instead of using the stop button because TVBIRR/moc reloads the full playlist each time you push play.
+Note that if you are using the default playlist of over 32000 stations, there is a 10 second or so delay before the first station will start to play because moc (the music player) is quite slow at loading large playlists so be patient! You can reduce this time by editing the playlist, the default being `/root/playlists/TVBIRR-All-Stations.m3u`. If you trim the playlist down to about 3K stations moc should load it in a second or so. Once the playlist has loaded, skipping stations is almost instant.
 
-By default, TVBIRR will record its MP3s to the same disk that you are running Armbian on, under `/root/mp3s`. If you fill your OS disk with MP3s it will stopping running and booting so if you do use the record feature it is recommended to adjust the path used by the `jack_capture` recording command in `/etc/keybinder.conf` to save your recordings to a different SD card or an external USB disk.
+If you are going to keep the default 32K station playlist, it might make sense to leave it running and turn the volume down to silent instead of using the stop button because TVBIRR/moc reloads the full playlist each time you push play.
+
+By default, TVBIRR will record its MP3s to the same disk that you are running Armbian on, under `/root/mp3s`. If you fill your OS disk with MP3s your TVB will stopping running and booting so if you do use the record feature it is recommended to adjust the path used by the `jack_capture` recording command in `/etc/keybinder.conf` to save your recordings to a different SD card or an external USB disk.
 
 ## Customising /etc/keybinder.conf
 
-If you want to change the action of the remote buttons you'll have to find out what values to use with keybinder for each button. Run the following command then push buttons on your remote to print their codes that you can assign commands to in `/etc/keybinder.conf`:
+If you want to change the action of the IR remote buttons you'll have to find out what values to use with keybinder for each button. Run the following command then push buttons on your remote to print their codes. You can assign commands to these keycodes in `/etc/keybinder.conf`:
 
 ```
 evtest /dev/input/by-path/platform-ff808000.ir-event
 ```
 
-Note that the default button actions are hardcoded into the kernel so you must edit the relevant bit of the meson-ir kernel source and rebuild the kernel to disable the power button, for example.
+Note that the default IR button actions are hardcoded into the kernel so you must edit the relevant bit of the meson-ir kernel source and rebuild the kernel to disable the power button, for example.
 
 ## Generating the playlist
 
