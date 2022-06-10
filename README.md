@@ -2,6 +2,8 @@
 
 **TV Box Internet Radio Recorder (TVBIRR)** is an ansible playbook to configure a X96 Max+ (or similar, if you adjust the playbook) TV box to act as an internet radio streaming and recording device that you can operate entirely with the infrared remote included with the TV box. It includes a playlist of over 32000 free-to-play internet radio stations.
 
+![X96 Max Plus pic](https://github.com/danboid/TVBIRR/blob/main/images/x96Max%2B.jpg)
+
 **TVBIRR** uses [music on console (moc)](http://moc.daper.net/) to stream channels and playlists, [keybinder](https://github.com/elopez/keybinder.git) to convert the infrared remote keypresses into commands, [JACK](https://jackaudio.org/) for audio playback and streams are recorded to MP3 files using [jack_capture](https://github.com/kmatheussen/jack_capture). You can see when **jack_capture** is recording the currently playing station because **CARD** is displayed on the TV box LED display. You can easily customise it to play playlists of locally stored music too. TVBIRR runs in the background leaving your TV box free to serve other tasks.
 
 ## Requirements
@@ -37,3 +39,23 @@ After the ansible playbook has been run and its installed and configured the var
 Note that if you are using the default playlist of over 32000 stations, there is a 10 second or so delay before the first station will start to play because moc (the music player) is quite slow at loading large playlists so be patient! You can reduce this time by editing the playlist, the default being `/root/playlists/TVBIRR-All-Stations.m3u`. If you trim the playlist down to about 3K stations moc should load in a second or so when you push play. Once the playlist has loaded, skipping stations is almost instant. If you are going to keep the default 32K station playlist, it might make sense to leave it running and turn the volume down to silent instead of using the stop button because TVBIRR/moc reloads the full playlist each time you push play.
 
 By default, TVBIRR will record its MP3s to the same disk that you are running Armbian on, under `/root/mp3s`. If you fill your OS disk with MP3s it will stopping running and booting so if you do use the record feature it is recommended to adjust the path used by the `jack_capture` recording command in `/etc/keybinder.conf` to save your recordings to a different SD card or an external USB disk.
+
+## Customising /etc/keybinder.conf
+
+If you want to change the action of the remote buttons you'll have to find out what values to use with keybinder for each button. Run the following command then push buttons on your remote to print their codes that you can assign commands to in `/etc/keybinder.conf`:
+
+```
+evtest /dev/input/by-path/platform-ff808000.ir-event
+```
+
+Note that the default button actions are hardcoded into the kernel so you must edit the relevant bit of the meson-ir kernel source and rebuild the kernel to disable the power button, for example.
+
+## Generating the playlist
+
+I used the following commands:
+
+```
+curl -L http://de1.api.radio-browser.info/json/stations > radiobrowser.json
+jq '.[].url_resolved' radiobrowser.json > TVBIRR-All-Stations.m3u
+sed -i 's/"//g' TVBIRR-All-Stations.m3u
+```
