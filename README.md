@@ -59,5 +59,5 @@ I used the following commands:
 ```
 curl -L http://de1.api.radio-browser.info/json/stations > radiobrowser.json
 jq '.[].url_resolved' radiobrowser.json > TVBIRR-All-Stations.m3u
-sed -i -e '/^"https/d' -e 's/"//g' TVBIRR-All-Stations.m3u
+sed -i '/^"https/d;s/"//g' TVBIRR-All-Stations.m3u
 ```
