@@ -1,6 +1,6 @@
 # TVBIRR
 
-**TV Box Internet Radio Recorder (TVBIRR)** is an ansible playbook to configure a X96 Max+ (or similar, if you adjust the playbook) TV box to act as an internet radio streaming and recording device that you can operate entirely with the infrared remote included with the TV box. It includes a playlist of over 21000 free-to-play internet radio stations.
+**TV Box Internet Radio Recorder (TVBIRR)** is an ansible playbook to configure a X96 Air or X96 Max(+) TV box to function as an internet radio streaming and recording device that you can operate entirely with the infrared remote included with the TV box. It includes a playlist of over 21000 free-to-play internet radio stations.
 
 ![X96 Max Plus pic](https://github.com/danboid/TVBIRR/blob/main/images/x96Max%2B.jpg)
 
@@ -16,11 +16,11 @@ You also need a Linux-compatible USB to audio jack adapter, USB soundcard or USB
 
 ## Installation
 
-Before you can install or use TVBIRR you must first install [Armbian for Amlogic TV Boxes](https://github.com/ophub/amlogic-s9xxx-armbian) aka s9xxx Armbian. You should be able to install TVBIRR under a Ubuntu or Debian-based build of s9xxx Armbian. If you have the X96 Max Plus then you want to download a S905X3 build of Armbian, S905X3 being the model of the System On a Chip used in the X96 Max+.
+Before you can install or use TVBIRR you must first install [Armbian for Amlogic TV Boxes](https://github.com/ophub/amlogic-s9xxx-armbian) aka s9xxx Armbian. You should be able to install TVBIRR under a Ubuntu or Debian-based build of s9xxx Armbian. If you have a X96 Air or an X96 Max Plus then you want to download a S905X3 build of Armbian, S905X3 being the model of the System On a Chip used in the X96 Air and the X96 Max+.
 
 `nmtui` is useful for easily configuring your wifi from the Armbian console, if you are using wifi.
 
-OK so you've finally got Armbian running on your TV box! You can install TVBIRR by running, as root:
+When you've got Armbian running on your TV box, you can install TVBIRR by running the following commands as root:
 
 ```
 apt update && apt upgrade
@@ -36,7 +36,7 @@ After the ansible playbook has been run and its installed and configured the var
 
 ![TVBIRR remote controls](https://github.com/danboid/TVBIRR/blob/main/images/TVBIRR-remote.jpg)
 
-Note that if you are using the default playlist of over 21000 stations, there is a 6+ second delay before the first station will start to play because moc (the music player) is quite slow at loading large playlists so be patient! You can reduce this time by editing the playlist, the default being `/root/playlists/TVBIRR-All-Stations.m3u`. If you trim the playlist down to about 3K stations moc should load it in a second or so. Once the playlist has loaded, skipping stations is almost instant.
+Note that if you are using the default playlist of over 21000 stations, there is a 6+ second delay before the first station will start to play because moc (the music player) is quite slow at loading large playlists so be patient! You can reduce this time by editing the playlist, the default being `/root/playlists/TVBIRR-All-Stations.m3u`. If you trim the playlist down to about 3K stations moc should load it in a second or so. Once the playlist has loaded, skipping stations is instant.
 
 If you are going to keep the default station playlist, it might make sense to leave it running and turn the volume down to silent instead of using the stop button because TVBIRR/moc reloads the full playlist each time you push play.
 
