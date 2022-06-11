@@ -10,7 +10,7 @@
 
 You need two things to run **TVBIRR**:
 
-An **X96 Max Plus TV box**. At present **TVBIRR** only fully supports the X96 Max+ TV box but you could run it with all of its features, with a little tweaking of its scripts, on any on the TV boxes that have a LED display thats compatible with one of the [armbian-led preset files](https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/build-armbian/armbian-docs/led_screen_display_control.md). I'd be willing to accept patches to add support for other TV boxes to **TVBIRR**.
+A **X96 Air**, **X96 Max Plus** or **X96 Max** TV box. At present **TVBIRR** only fully supports those TV boxes because they all use the same openvfd LED display configuration. You should still be able to run **TVBIRR**  with all of its features, with a little tweaking of its scripts, on any on the TV boxes that have a LED display thats compatible with one of the [armbian-led preset files](https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/build-armbian/armbian-docs/led_screen_display_control.md). I'd be willing to accept patches to add support for other TV boxes to **TVBIRR**.
 
 You also need a Linux-compatible USB to audio jack adapter, USB soundcard or USB speaker. Most USB audio devices will work. There are two reasons for this requirement. The onboard audio on the X96 Max Plus only works under Android, not Armbian Linux and its pretty poor quality anyway. Also, A cheap £2 USB headphone jack adapter (I bought 2 for £3) will be much better quality than the onboard audio jack of the X96 Max+.
 
