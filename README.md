@@ -36,7 +36,7 @@ After the ansible playbook has been run and its installed and configured the var
 
 ![TVBIRR remote controls](https://github.com/danboid/TVBIRR/blob/main/images/TVBIRR-remote.jpg)
 
-Note that if you are using the default playlist of over 21000 stations, there is a 6+ second delay before the first station will start to play because moc (the music player) is quite slow at loading large playlists so be patient! You can reduce this time by editing the playlist, the default being `/root/playlists/TVBIRR-All-Stations.m3u`. If you trim the playlist down to about 3K stations moc should load it in a second or so. Once the playlist has loaded, skipping stations is instant.
+Note that if you are using the default playlist of over 21000 stations, there is a 10-15 second or so delay before the first station will start to play because moc, the music player, is quite slow at loading large playlists so be patient! You may be able to reduce this initial startup time by reducing the size of the default playlist, `/root/playlists/TVBIRR-All-Stations.m3u`. Once the playlist has loaded, skipping stations is instantaneous.
 
 If you are going to keep the default station playlist, it might make sense to leave it running and turn the volume down to silent instead of using the stop button because TVBIRR/moc reloads the full playlist each time you push play.
 
