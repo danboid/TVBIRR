@@ -1,6 +1,6 @@
 # TVBIRR
 
-**TV Box Internet Radio Recorder (TVBIRR)** is an ansible playbook to configure a X96 Max+ (or similar, if you adjust the playbook) TV box to act as an internet radio streaming and recording device that you can operate entirely with the infrared remote included with the TV box. It includes a playlist of over 32000 free-to-play internet radio stations.
+**TV Box Internet Radio Recorder (TVBIRR)** is an ansible playbook to configure a X96 Max+ (or similar, if you adjust the playbook) TV box to act as an internet radio streaming and recording device that you can operate entirely with the infrared remote included with the TV box. It includes a playlist of over 21000 free-to-play internet radio stations.
 
 ![X96 Max Plus pic](https://github.com/danboid/TVBIRR/blob/main/images/x96Max%2B.jpg)
 
@@ -36,9 +36,9 @@ After the ansible playbook has been run and its installed and configured the var
 
 ![TVBIRR remote controls](https://github.com/danboid/TVBIRR/blob/main/images/TVBIRR-remote.jpg)
 
-Note that if you are using the default playlist of over 32000 stations, there is a 10 second or so delay before the first station will start to play because moc (the music player) is quite slow at loading large playlists so be patient! You can reduce this time by editing the playlist, the default being `/root/playlists/TVBIRR-All-Stations.m3u`. If you trim the playlist down to about 3K stations moc should load it in a second or so. Once the playlist has loaded, skipping stations is almost instant.
+Note that if you are using the default playlist of over 21000 stations, there is a 6+ second delay before the first station will start to play because moc (the music player) is quite slow at loading large playlists so be patient! You can reduce this time by editing the playlist, the default being `/root/playlists/TVBIRR-All-Stations.m3u`. If you trim the playlist down to about 3K stations moc should load it in a second or so. Once the playlist has loaded, skipping stations is almost instant.
 
-If you are going to keep the default 32K station playlist, it might make sense to leave it running and turn the volume down to silent instead of using the stop button because TVBIRR/moc reloads the full playlist each time you push play.
+If you are going to keep the default station playlist, it might make sense to leave it running and turn the volume down to silent instead of using the stop button because TVBIRR/moc reloads the full playlist each time you push play.
 
 By default, TVBIRR will record its MP3s to the same disk that you are running Armbian on, under `/root/mp3s`. If you fill your OS disk with MP3s your TVB will stopping running and booting so if you do use the record feature it is recommended to adjust the path used by the `jack_capture` recording command in `/etc/keybinder.conf` to save your recordings to a different SD card or an external USB disk.
 
@@ -59,5 +59,5 @@ I used the following commands:
 ```
 curl -L http://de1.api.radio-browser.info/json/stations > radiobrowser.json
 jq '.[].url_resolved' radiobrowser.json > TVBIRR-All-Stations.m3u
-sed -i 's/"//g' TVBIRR-All-Stations.m3u
+sed -i -e '/^"https/d' -e 's/"//g' TVBIRR-All-Stations.m3u
 ```
