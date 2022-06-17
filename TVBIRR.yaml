@@ -135,6 +135,7 @@
       package:
         name:
           - moc
+          - espeak
           - jackd2 
           - jack-capture
           - libasound2-plugins
