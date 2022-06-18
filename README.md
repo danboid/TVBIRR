@@ -4,7 +4,9 @@
 
 ![X96 Max Plus pic](https://github.com/danboid/TVBIRR/blob/main/images/x96Max%2B.jpg)
 
-**TVBIRR** uses [music on console (moc)](http://moc.daper.net/) to stream channels and playlists, [keybinder](https://github.com/elopez/keybinder.git) to convert the infrared remote keypresses into commands, [JACK](https://jackaudio.org/) for audio playback and streams are recorded to MP3 files using [jack_capture](https://github.com/kmatheussen/jack_capture). You can see when **jack_capture** is recording the currently playing station because **CARD** is displayed on the TV box LED display. You can easily customise it to play playlists of locally stored music too. TVBIRR runs in the background leaving your TV box free to serve other tasks.
+**TVBIRR** uses [music on console (moc)](http://moc.daper.net/) to stream channels and playlists, [keybinder](https://github.com/elopez/keybinder.git) to convert the infrared remote keypresses into commands, [JACK](https://jackaudio.org/) for audio playback, streams are recorded to MP3 files using [jack_capture](https://github.com/kmatheussen/jack_capture) and [espeak](http://espeak.sourceforge.net/) is used to speak the names of titles (tracks or shows) and stations.
+
+You can see when **jack_capture** is recording the currently playing station because **CARD** is displayed on the TV box LED display. You can easily customise it to play playlists of locally stored music too. TVBIRR runs in the background leaving your TV box free to serve other tasks.
 
 ## Requirements
 
