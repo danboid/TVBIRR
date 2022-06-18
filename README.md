@@ -44,6 +44,10 @@ If you are going to keep the default station playlist, it might make sense to le
 
 By default, TVBIRR will record its MP3s to the same disk that you are running Armbian on, under `/root/mp3s`. If you fill your OS disk with MP3s your TVB will stopping running and booting so if you do use the record feature it is recommended to adjust the path used by the `jack_capture` recording command in `/etc/keybinder.conf` to save your recordings to a different SD card or an external USB disk.
 
+## Using your TVBIRR as a Bluetooth speaker
+
+You can configure your TVBIRR setup to simultaneously function as a wireless speaker/amplifier for Bluetooth devices like phones and tablets with some [extra configuration.](https://github.com/danboid/TVBIRR/blob/main/docs/TVBIRR-Bluetooth.md)
+
 ## Customising /etc/keybinder.conf
 
 If you want to change the action of the IR remote buttons you'll have to find out what values to use with keybinder for each button. Run the following command then push buttons on your remote to print their codes. You can assign commands to these keycodes in `/etc/keybinder.conf`:
