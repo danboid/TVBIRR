@@ -42,7 +42,7 @@ This command will show the name of your Bluetooth controller if it has been reco
 
 ## Configure the bluez-alsa.service systemd service
 
-Edit `/etc/systemd/system/bluetooth.target.wants/bluez-alsa.service` and modify the `ExecStart` line so that it reads:
+Edit `/lib/systemd/system/bluez-alsa.service` and modify the `ExecStart` line so that it reads:
 
 ```
 ExecStart=/usr/bin/bluealsa -p a2dp-sink
@@ -50,20 +50,10 @@ ExecStart=/usr/bin/bluealsa -p a2dp-sink
 
 After changing this file, reboot or restart the service so that you have correctly configured `bluez-alsa` service.
 
-## Pair and connect your Bluetooth device
-
-There are two steps to connecting your Bluetooth device, pairing and connection. You usually only have to pair the device once.
+## Connect your Bluetooth device
 
 Enter the `bluetoothctl` console by running `bluetoothctl` with no extra options then run `scan on`. Enable the Bluetooth connection on your device and you should see it recognised with its MAC address listed in the `bluetoothctl` console within a few seconds.
 
-Next, pair your bluetooth device by running `pair XX:XX:XX:XX:XX:XX` replacing the X's with your devices Bluetooth MAC address. After you have paired your device you can quit the bluetoothctl console by typing exit or quit. You usually only need to perform these steps to discover a devices address the first time you pair it.
+Next, pair your bluetooth device by running `pair XX:XX:XX:XX:XX:XX` followed by `trust XX:XX:XX:XX:XX:XX` then `connect XX:XX:XX:XX:XX:XX`, replacing the X's with your devices Bluetooth MAC address that you found doing a scan. After you have paired your device you can quit the bluetoothctl console by typing `exit` or `quit`. You usually only need to perform these steps the first time you connect a device.
 
-You should now be able to connect to your device by running:
-
-```shell
-$ bluetoothctl connect XX:XX:XX:XX:XX:XX
-```
-
-Your TV box should now be visible on the Bluetooth settings menu on your device as a connected Bluetooth speaker called `armbian` and you can start streaming audio to it.
-
-If it connected fine, edit the `bluetoothctl connect` command in `/etc/keybinder.conf` on your TV box and change `XX:XX:XX:XX:XX:XX` to the Bluetooth MAC address of the device that you want to enable connection with. After changing this file and rebooting you should be able to connect to the device in the future simply by pushing the UP key on the TV box remote, provided Bluetooth is enabled on the connecting machine and the device is within range.
+Your TV box should now be visible on the Bluetooth settings menu on your device as a connected Bluetooth speaker called `armbian` and you can start streaming audio to it after pushing the UP key on the TV box remote, provided Bluetooth is enabled on the connecting machine and the device is within range.
