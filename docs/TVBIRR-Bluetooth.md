@@ -1,4 +1,4 @@
-# Using a TVBIRR box as a Bluetooth speaker
+# Using TVBIRR as a Bluetooth speaker
 
 With a little bit of configuration, you can pair your phone or tablet to your TVBIRR install and have it play a Bluetooth audio stream sent wirelessly from your phone, tablet or other Bluetooth device. Thanks to TVBIRR being based upon JACK, you can stream Bluetooth audio at the same time as playing internet streams with `moc`, if you wish.
 
@@ -34,7 +34,9 @@ $ sudo apt install bluez bluez-alsa-utils
 
 Before we go any further, lets check Armbian recognises your Bluetooth adapter:
 
+```shell
 $ bluetoothctl show
+```
 
 This command will show the name of your Bluetooth controller if it has been recognised by the Linux kernel.
 
@@ -58,7 +60,9 @@ Next, pair your bluetooth device by running `pair XX:XX:XX:XX:XX:XX` replacing t
 
 You should now be able to connect to your device by running:
 
+```shell
 $ bluetoothctl connect XX:XX:XX:XX:XX:XX
+```
 
 Your TV box should now be visible on the Bluetooth settings menu on your device as a connected Bluetooth speaker called `armbian` and you can start streaming audio to it.
 
