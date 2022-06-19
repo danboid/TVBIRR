@@ -18,7 +18,7 @@ There are a few reasons for this guide and the playbook not configuring Bluetoot
 
 ## Does my TV box have working onboard Bluetooth?
 
-Just because you have working Bluetooth under Android on your TV box doesn't mean it will also work under Armbian unless it is correctly configured in the .dtb (Device Tree Blob) file.
+Having working Bluetooth under Android on your TV box doesn't mean it will also work under Armbian unless it is correctly configured in the your dtb (Device Tree Blob) file. You can check the [Amlogic Armbian model database](https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/build-armbian/armbian-docs/amlogic_model_database.md) to see if Bluetooth is listed as being supported for your model.
 
 The X96 Air Q1000 and X96 Max Plus Q2 are both known to have a Armbian .dtb file that has working onboard Bluetooth support - `meson-sm1-x96-max-plus-q2.dtb`. If you can't find a dtb with working Bluetooth for your TV box then you can always use a USB Bluetooth adapter instead. Most if not all USB Bluetooth adapters will work with Linux.
 
@@ -42,18 +42,50 @@ This command will show the name of your Bluetooth controller if it has been reco
 
 ## Configure the bluez-alsa.service systemd service
 
-Edit `/lib/systemd/system/bluez-alsa.service` and modify the `ExecStart` line so that it reads:
+Edit `/etc/default/bluez-alsa` and modify the `OPTIONS` line so that it reads:
 
 ```
-ExecStart=/usr/bin/bluealsa -p a2dp-sink
+OPTIONS="-p a2dp-sink"
 ```
 
-After changing this file, reboot or restart the service so that you have correctly configured `bluez-alsa` service.
+This enables the bluez-alsa Bluetooth audio receiver profile.
+
+## Create the bluealsa-aplay systemd service
+
+Create the file `/lib/systemd/system/bluealsa-aplay.service` containing:
+
+```
+[Unit]
+Description=Bluealsa audio player
+Documentation=https://github.com/Arkq/bluez-alsa/
+Wants=bluealsa.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/bluealsa-aplay
+Restart=on-failure
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+RemoveIPC=true
+RestrictAddressFamilies=AF_UNIX
+
+[Install]
+WantedBy=bluetooth.target
+```
+
+Make this service start on boot by running:
+
+```shell
+$ sudo systemctl enable bluealsa-aplay.service
+```
+
+You may now want to reboot to ensure the bluez-alsa services are running before proceeeding.
 
 ## Connect your Bluetooth device
 
 Enter the `bluetoothctl` console by running `bluetoothctl` with no extra options then run `scan on`. Enable the Bluetooth connection on your device and you should see it recognised with its MAC address listed in the `bluetoothctl` console within a few seconds.
 
-Next, pair your bluetooth device by running `pair XX:XX:XX:XX:XX:XX` followed by `trust XX:XX:XX:XX:XX:XX` then `connect XX:XX:XX:XX:XX:XX`, replacing the X's with your devices Bluetooth MAC address that you found doing a scan. After you have paired your device you can quit the bluetoothctl console by typing `exit` or `quit`. You usually only need to perform these steps the first time you connect a device.
+Pair your bluetooth device by running `pair XX:XX:XX:XX:XX:XX` followed by `trust XX:XX:XX:XX:XX:XX` then `connect XX:XX:XX:XX:XX:XX`, replacing the X's with your devices Bluetooth MAC address. After you have paired your device you can quit the bluetoothctl console by typing `exit` or `quit`. You usually only need to perform these steps the first time you connect a device.
 
-Your TV box should now be visible on the Bluetooth settings menu on your device as a connected Bluetooth speaker called `armbian` and you can start streaming audio to it after pushing the UP key on the TV box remote, provided Bluetooth is enabled on the connecting machine and the device is within range.
+Your TV box should now be visible on the Bluetooth settings menu on your device as a connected Bluetooth speaker called `armbian`. You should now be ready to start streaming audio to it provided Bluetooth is enabled on the connecting machine and the device is within range.
