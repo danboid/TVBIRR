@@ -65,5 +65,5 @@ TVBIRR includes a default playlist of over 21000 stations but if you wanted to g
 ```
 curl -L http://de1.api.radio-browser.info/json/stations > radiobrowser.json
 jq '.[].url_resolved' radiobrowser.json > TVBIRR-All-Stations.m3u
-sed -i '/^"https/d;s/"//g' TVBIRR-All-Stations.m3u
+sed -i '/^"https/d;s/"//g;/^$/d' TVBIRR-All-Stations.m3u
 ```
